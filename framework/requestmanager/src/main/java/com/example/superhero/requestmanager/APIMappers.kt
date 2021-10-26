@@ -2,21 +2,46 @@ package com.example.superhero.requestmanager
 
 import com.example.superhero.domain.*
 
-fun HeroResponseServer.toHeroDomainList(): List<Hero> = results.map {
+/*fun HeroResponseServer.toHeroDomainList(): List<Hero> = results.map {
     it.run {
         Hero(
-            response,
+            response?:"",
             id,
             name,
             powerStats.toPowerStatsDomain(),
             biography.toBiographyDomain(),
-            appearance.toAppearenceDomain(),
+                appearance?.toAppearenceDomain()?: Appearance(
+                        "",
+                        "",
+                        listOf(),
+                        listOf(),
+                        "",
+                ""
+                ),
             work.toWorkDomain(),
             connections.toConnectionsDomain(),
             image.toImageDomain()
         )
     }
-}
+}*/
+fun HeroServer.toHeroDomain() = Hero(
+        response?:"",
+        id,
+        name,
+        powerStats.toPowerStatsDomain(),
+        biography.toBiographyDomain(),
+        appearance?.toAppearenceDomain()?: Appearance(
+                "",
+                "",
+                listOf(),
+                listOf(),
+                "",
+                ""
+        ),
+        work.toWorkDomain(),
+        connections.toConnectionsDomain(),
+        image.toImageDomain()
+)
 
 fun PowerStatsServer.toPowerStatsDomain() = PowerStats(
     intelligence,
@@ -32,18 +57,18 @@ fun BiographyServer.toBiographyDomain()= Biography(
     alterEgos,
     aliases,
     placeOfBirth,
-    firstAppearance,
+    firstAppearance?:"",
     publisher,
-    aligment,
+    aligment?:"",
 )
 
 fun AppearanceServer.toAppearenceDomain() = Appearance(
-    gender,
-    race,
-    height,
-    weight,
-    eyeColor,
-    hairColor
+    gender?:"",
+    race?:"",
+    height?: listOf(),
+    weight?: listOf(),
+    eyeColor?:"",
+    hairColor?:""
 )
 
 fun WorkServer.toWorkDomain() = Work(

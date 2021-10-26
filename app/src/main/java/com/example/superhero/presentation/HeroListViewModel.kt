@@ -15,10 +15,15 @@ class HeroListViewModel (
 
     private val _events = MutableLiveData<Event<HeroListNavigation>>()
     val events: LiveData<Event<HeroListNavigation>> get() = _events
+    
+    private val heroListAux: ArrayList<Hero> =ArrayList()
 
     private var currentPage = 1
     private var isLastPage = false
     private var isLoading = false
+
+    private var minId =1
+    private var maxId= 10
 
 
     override fun onCleared() {
@@ -46,23 +51,57 @@ class HeroListViewModel (
     }
 
     fun onGetAllHeroes(){
-        disposable.add(
-            getAllHeroesUseCase
+        for (i in minId..maxId){
+            disposable.add(
+                    getAllHeroesUseCase
+                            .operate(i)
+                            .doOnSubscribe { showLoading() }
+                            .subscribe({ hero ->
+
+                                /*if (hero < PAGE_SIZE) {
+                                    isLastPage = true
+                                }*/
+                                heroListAux.add(hero)
+                                //hideLoading()
+                                //_events.value = Event(HeroListNavigation.ShowHeroList(heroList))
+                            }, { error ->
+                                isLastPage = true
+                                hideLoading()
+                                _events.value = Event(HeroListNavigation.ShowHeroError(error))
+                            })
+            )
+        }
+
+        hideLoading()
+        _events.value = Event(HeroListNavigation.ShowHeroList(heroListAux))
+        minId = minId.plus(10)
+        maxId = maxId.plus(10)
+
+        if (heroListAux.size < PAGE_SIZE) {
+            isLastPage = true
+        }
+        //disposable.add(
+            /*getAllHeroesUseCase
                 .operate(currentPage)
                 .doOnSubscribe { showLoading() }
-                .subscribe({ heroList ->
-                    if (heroList.size < PAGE_SIZE) {
+                .subscribe({ hero ->
+
+                    if (hero < PAGE_SIZE) {
                         isLastPage = true
                     }
 
-                    hideLoading()
-                    _events.value = Event(HeroListNavigation.ShowHeroList(heroList))
+                    //hideLoading()
+                    //_events.value = Event(HeroListNavigation.ShowHeroList(heroList))
                 }, { error ->
                     isLastPage = true
                     hideLoading()
                     _events.value = Event(HeroListNavigation.ShowHeroError(error))
-                })
-        )
+                })*/
+        //)
+    }
+
+    fun onGetHero(){
+
     }
 
 
@@ -99,7 +138,7 @@ class HeroListViewModel (
 
     companion object {
 
-        private const val PAGE_SIZE = 20
+        private const val PAGE_SIZE = 10
     }
 
 

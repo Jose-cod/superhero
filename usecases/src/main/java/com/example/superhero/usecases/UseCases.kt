@@ -8,6 +8,6 @@ class GetAllHeroesUseCase(
     private val heroRepository: HeroRepository
 ) {
 
-    fun operate(currentPage: Int): Single<List<Hero>> =
-        heroRepository.getAllHeroes(currentPage)
+    fun operate(currentPage: Int): Single<Hero> =
+        heroRepository.getHero(currentPage)
 }

@@ -4,9 +4,8 @@ object APIConstants {
 
     const val ACCESS_TOKEN = "1989803117856400"
     const val BASE_API_URL = "https://www.superheroapi.com/api.php/$ACCESS_TOKEN/"
-    const val ENDPOINT_HEROES ="7"
 
-    //const val ENDPOINT_HERO = "character/?"
+    const val ENDPOINT_HERO = "{id}"
 
     const val RESULTS_KEY = "results"
     const val RESPONSE_KEY = "response"

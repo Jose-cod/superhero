@@ -9,11 +9,11 @@ import io.reactivex.schedulers.Schedulers
 class HeroRetrofitDataSource(
     private val heroRequest: HeroRequest
 ): RemoteHeroDataSource {
-    override fun getAllHeroes(page: Int): Single<List<Hero>> {
+    override fun getHero(page: Int): Single<Hero> {
         return heroRequest
             .getService<HeroService>()
             .getAllHeroes(page)
-            .map(HeroResponseServer::toHeroDomainList)
+            .map(HeroServer::toHeroDomain)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
     }

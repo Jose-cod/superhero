@@ -39,18 +39,18 @@ import com.example.superhero.requestmanager.APIConstants.WORK_KEY
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-data class HeroResponseServer(
+/*data class HeroResponseServer(
     @SerializedName(RESULTS_KEY) val results: List<HeroServer>
-)
+)*/
 
 @Parcelize
 data class HeroServer(
-    @SerializedName(RESPONSE_KEY) val response: String,
+    @SerializedName(RESPONSE_KEY) val response: String?,
     @SerializedName(ID_KEY) val id: Int,
     @SerializedName(NAME_KEY) val name: String,
     @SerializedName(POWER_STATS_KEY) val powerStats: PowerStatsServer,
     @SerializedName(BIOGRAPHY_KEY) val biography: BiographyServer,
-    @SerializedName(APPEARENCE_KEYS) val appearance: AppearanceServer,
+    @SerializedName(APPEARENCE_KEYS) val appearance: AppearanceServer?,
     @SerializedName(WORK_KEY) val work: WorkServer,
     @SerializedName(CONNECTION_KEY) val connections: ConnectionsServer,
     @SerializedName(IMAGE_KEY) val image: ImageServer
@@ -58,12 +58,12 @@ data class HeroServer(
 
 @Parcelize
 data class PowerStatsServer(
-    @SerializedName(INTELLIGENCE_KEY) val intelligence: Int,
-    @SerializedName(STRENGTH_KEY) val strength: Int,
-    @SerializedName(SPEED_KEY) val speed: Int,
-    @SerializedName(DURABILITY_KEY) val durability: Int,
-    @SerializedName(POWER_KEY) val power: Int,
-    @SerializedName(COMBAT_KEY) val combat: Int
+    @SerializedName(INTELLIGENCE_KEY) val intelligence: String,
+    @SerializedName(STRENGTH_KEY) val strength: String,
+    @SerializedName(SPEED_KEY) val speed: String,
+    @SerializedName(DURABILITY_KEY) val durability: String,
+    @SerializedName(POWER_KEY) val power: String,
+    @SerializedName(COMBAT_KEY) val combat: String
 ): Parcelable
 
 @Parcelize
@@ -72,19 +72,19 @@ data class BiographyServer(
     @SerializedName(ALTER_EGO_KEY) val alterEgos: String,
     @SerializedName(ALIASES_KEY) val aliases: List<String>,
     @SerializedName(PLACE_BIRTH_KEY) val placeOfBirth: String,
-    @SerializedName(FIRST_APPEARENCE_KEY) val firstAppearance: String,
+    @SerializedName(FIRST_APPEARENCE_KEY) val firstAppearance: String?,
     @SerializedName(PUBLISHER_KEY) val publisher: String,
-    @SerializedName(ALIGMENT_KEY) val aligment: String
+    @SerializedName(ALIGMENT_KEY) val aligment: String?
 ): Parcelable
 
 @Parcelize
 data class AppearanceServer(
-    @SerializedName(GENDER_KEY) val gender: String,
-    @SerializedName(RACE_KEY) val race: String,
-    @SerializedName(HEIGHT_KEY) val height: List<String>,
-    @SerializedName(WEIGHT_KEY) val weight: List<String>,
-    @SerializedName(EYE_COLOR_KEY) val eyeColor: String,
-    @SerializedName(HAIR_COLOR_KEY) val hairColor: String
+    @SerializedName(GENDER_KEY) val gender: String?,
+    @SerializedName(RACE_KEY) val race: String?,
+    @SerializedName(HEIGHT_KEY) val height: List<String>?,
+    @SerializedName(WEIGHT_KEY) val weight: List<String>?,
+    @SerializedName(EYE_COLOR_KEY) val eyeColor: String?,
+    @SerializedName(HAIR_COLOR_KEY) val hairColor: String?
 ): Parcelable
 
 @Parcelize

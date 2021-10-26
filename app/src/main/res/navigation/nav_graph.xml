@@ -10,7 +10,7 @@
         android:name="com.example.superhero.ui.HeroListFragment"
         android:label="HeroListFragment" >
         <action
-            android:id="@+id/action_heroListFragment_to_detailHeroFragment"
+            android:id="@+id/toDetailHeroFragment"
             app:destination="@id/detailHeroFragment" />
     </fragment>
     <fragment
