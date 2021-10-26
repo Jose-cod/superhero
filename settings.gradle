@@ -1,2 +1,7 @@
+include ':usecases'
+include ':framework:requestmanager'
+include ':data'
+include ':framework:imagemanager'
+include ':domain'
 include ':app'
 rootProject.name = "superhero"
