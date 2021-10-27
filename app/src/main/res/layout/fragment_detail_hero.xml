@@ -5,10 +5,232 @@
     android:layout_height="match_parent"
     tools:context=".ui.DetailHeroFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/iv_photo"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:src="@drawable/ic_camera_alt_black"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"/>
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_marginHorizontal="8dp"
+                style="@style/CharacterListItemName"
+                android:text="Peter Parker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CharacterDetailLocationSectionCard"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/CharacterDetailSectionTitle"
+                        android:text="Estadística de Poder" />
+
+                    <TextView
+                        android:id="@+id/tv_intelligence"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+                    <TextView
+                        android:id="@+id/tv_strength"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+                    <TextView
+                        android:id="@+id/tv_speed"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+                    <TextView
+                        android:id="@+id/tv_durability"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+                    <TextView
+                        android:id="@+id/tv_power"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+                    <TextView
+                        android:id="@+id/tv_combat"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                style="@style/CharacterDetailLocationSectionCard"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/CharacterDetailSectionTitle"
+                        android:text="Biografía" />
+
+                    <TextView
+                        android:id="@+id/tv_fullName"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+
+                    <TextView
+                        android:id="@+id/tv_alterEgos"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+
+                    <TextView
+                        android:id="@+id/tv_aliases"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+
+                    <TextView
+                        android:id="@+id/tv_place_of_birth"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+                    <TextView
+                        android:id="@+id/tv_first_appearence"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+
+                    <TextView
+                        android:id="@+id/tv_publisher"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+
+                    <TextView
+                        android:id="@+id/tv_aligment"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CharacterDetailLocationSectionCard"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/CharacterDetailSectionTitle"
+                        android:text="Apariencia" />
+
+                    <TextView
+                        android:id="@+id/tv_gender"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+                    <TextView
+                        android:id="@+id/tv_race"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+                    <TextView
+                        android:id="@+id/tv_height"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+                    <TextView
+                        android:id="@+id/tv_weight"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+                    <TextView
+                        android:id="@+id/tv_eye_color"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+                    <TextView
+                        android:id="@+id/tv_hair_color"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CharacterDetailLocationSectionCard"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/CharacterDetailSectionTitle"
+                        android:text="Trabajo" />
+
+                    <TextView
+                        android:id="@+id/tv_occupation"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+                    <TextView
+                        android:id="@+id/tv_base"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CharacterDetailLocationSectionCard"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/CharacterDetailSectionTitle"
+                        android:text="Conexiones" />
+
+                    <TextView
+                        android:id="@+id/tv_group_affiliation"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+                    <TextView
+                        android:id="@+id/tv_relatives"
+                        style="@style/CharacterDetailSectionBody"
+                        android:text=""/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

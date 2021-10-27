@@ -2,28 +2,7 @@ package com.example.superhero.requestmanager
 
 import com.example.superhero.domain.*
 
-/*fun HeroResponseServer.toHeroDomainList(): List<Hero> = results.map {
-    it.run {
-        Hero(
-            response?:"",
-            id,
-            name,
-            powerStats.toPowerStatsDomain(),
-            biography.toBiographyDomain(),
-                appearance?.toAppearenceDomain()?: Appearance(
-                        "",
-                        "",
-                        listOf(),
-                        listOf(),
-                        "",
-                ""
-                ),
-            work.toWorkDomain(),
-            connections.toConnectionsDomain(),
-            image.toImageDomain()
-        )
-    }
-}*/
+
 fun HeroServer.toHeroDomain() = Hero(
         response?:"",
         id,
@@ -44,12 +23,12 @@ fun HeroServer.toHeroDomain() = Hero(
 )
 
 fun PowerStatsServer.toPowerStatsDomain() = PowerStats(
-    intelligence,
-    strength,
-    speed,
-    durability,
-    power,
-    combat
+    intelligence?:"-",
+    strength?:"-",
+    speed?:"-",
+    durability?:"-",
+    power?:"-",
+    combat?:"-"
 )
 
 fun BiographyServer.toBiographyDomain()= Biography(

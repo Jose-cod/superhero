@@ -30,7 +30,6 @@ import com.example.superhero.requestmanager.APIConstants.PUBLISHER_KEY
 import com.example.superhero.requestmanager.APIConstants.RACE_KEY
 import com.example.superhero.requestmanager.APIConstants.RELATIVES_KEY
 import com.example.superhero.requestmanager.APIConstants.RESPONSE_KEY
-import com.example.superhero.requestmanager.APIConstants.RESULTS_KEY
 import com.example.superhero.requestmanager.APIConstants.SPEED_KEY
 import com.example.superhero.requestmanager.APIConstants.STRENGTH_KEY
 import com.example.superhero.requestmanager.APIConstants.URL_IMAGE_KEY
@@ -58,12 +57,12 @@ data class HeroServer(
 
 @Parcelize
 data class PowerStatsServer(
-    @SerializedName(INTELLIGENCE_KEY) val intelligence: String,
-    @SerializedName(STRENGTH_KEY) val strength: String,
-    @SerializedName(SPEED_KEY) val speed: String,
-    @SerializedName(DURABILITY_KEY) val durability: String,
-    @SerializedName(POWER_KEY) val power: String,
-    @SerializedName(COMBAT_KEY) val combat: String
+    @SerializedName(INTELLIGENCE_KEY) val intelligence: String?,
+    @SerializedName(STRENGTH_KEY) val strength: String?,
+    @SerializedName(SPEED_KEY) val speed: String?,
+    @SerializedName(DURABILITY_KEY) val durability: String?,
+    @SerializedName(POWER_KEY) val power: String?,
+    @SerializedName(COMBAT_KEY) val combat: String?
 ): Parcelable
 
 @Parcelize

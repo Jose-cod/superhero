@@ -7,7 +7,6 @@ object APIConstants {
 
     const val ENDPOINT_HERO = "{id}"
 
-    const val RESULTS_KEY = "results"
     const val RESPONSE_KEY = "response"
     const val ID_KEY = "id"
     const val NAME_KEY = "name"
@@ -29,7 +28,7 @@ object APIConstants {
     const val PUBLISHER_KEY = "publisher"
     const val ALIGMENT_KEY = "aligment"
     //Appearence's keys
-    const val APPEARENCE_KEYS =  "appearence"
+    const val APPEARENCE_KEYS =  "appearance"
     const val GENDER_KEY = "gender"
     const val RACE_KEY = "race"
     const val HEIGHT_KEY = "height"

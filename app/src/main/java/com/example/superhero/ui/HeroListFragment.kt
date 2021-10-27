@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +28,6 @@ import kotlinx.android.synthetic.main.fragment_hero_list.*
 class HeroListFragment : Fragment() {
 
     private lateinit var heroGridAdapter: HeroAdapter
-    private lateinit var listener: OnHeroListFragmentListener
     private lateinit var heroListComponent: HeroListComponent
 
     private val heroListViewModel: HeroListViewModel by lazy {
@@ -48,16 +48,6 @@ class HeroListFragment : Fragment() {
             }
         }
     }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        try{
-            listener = context as OnHeroListFragmentListener
-        }catch (e: ClassCastException){
-            throw ClassCastException("$context must implement OnHeroListFragmentListener")
-        }
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,16 +70,10 @@ class HeroListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        heroGridAdapter = HeroAdapter { hero ->
-            listener.openHeroDetail(hero)
-        }.also {
-            //setHasOptionsMenu(true)
-        }
+        heroGridAdapter = HeroAdapter()
 
         rvHeroList.run{
             addOnScrollListener(onScrollListener)
-            //setItemDecorationSpacing(resources.getDimension(R.dimen.list_item_padding))
-
             adapter = heroGridAdapter
         }
 
@@ -123,8 +107,5 @@ class HeroListFragment : Fragment() {
         }
     }
 
-    interface OnHeroListFragmentListener {
-        fun openHeroDetail(hero: Hero)
-    }
 
 }

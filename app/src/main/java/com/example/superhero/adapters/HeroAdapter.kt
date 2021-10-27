@@ -1,17 +1,18 @@
 package com.example.superhero.adapters
 
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.superhero.domain.Hero
 import com.example.superhero.R
 import com.example.superhero.databinding.ItemGridHeroBinding
 import com.example.superhero.imagemanager.bindImageUrl
+import com.example.superhero.ui.HeroListFragmentDirections
 import com.example.superhero.utils.bindingInflate
+import com.example.superhero.utils.toHeroServer
 import kotlinx.android.synthetic.main.item_grid_hero.view.*
 
-class HeroAdapter(
-    private val listener: (Hero) -> Unit
-): RecyclerView.Adapter<HeroAdapter.HeroViewHolder>() {
+class HeroAdapter(): RecyclerView.Adapter<HeroAdapter.HeroViewHolder>() {
 
     private val heroList: MutableList<Hero> = mutableListOf()
 
@@ -23,7 +24,7 @@ class HeroAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         HeroViewHolder(
             parent.bindingInflate(R.layout.item_grid_hero, false),
-            listener
+            //listener
         )
 
     override fun getItemCount() = heroList.size
@@ -32,14 +33,13 @@ class HeroAdapter(
 
     override fun onBindViewHolder(holder: HeroViewHolder, position: Int) {
         holder.bind(heroList[position])
+
     }
 
     class HeroViewHolder(
         private val dataBinding: ItemGridHeroBinding,
-        private val listener: (Hero) -> Unit
     ): RecyclerView.ViewHolder(dataBinding.root) {
 
-        //region Public Methods
         fun bind(item: Hero){
             dataBinding.hero = item
 
@@ -49,7 +49,13 @@ class HeroAdapter(
                 errorPlaceholder = R.drawable.ic_broken_image_black
             )
 
-            itemView.setOnClickListener { listener(item) }
+            itemView.setOnClickListener {
+
+
+                val navDirection = HeroListFragmentDirections.toDetailHeroFragment(item.toHeroServer())
+
+                findNavController(itemView).navigate(navDirection)
+            }
         }
 
     }

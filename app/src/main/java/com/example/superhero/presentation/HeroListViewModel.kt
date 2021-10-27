@@ -15,10 +15,9 @@ class HeroListViewModel (
 
     private val _events = MutableLiveData<Event<HeroListNavigation>>()
     val events: LiveData<Event<HeroListNavigation>> get() = _events
-    
+
     private val heroListAux: ArrayList<Hero> =ArrayList()
 
-    private var currentPage = 1
     private var isLastPage = false
     private var isLoading = false
 
@@ -37,7 +36,8 @@ class HeroListViewModel (
             return
         }
 
-        currentPage += 1
+        minId = minId.plus(10)
+        maxId = maxId.plus(10)
         onGetAllHeroes()
     }
 
@@ -46,7 +46,8 @@ class HeroListViewModel (
             _events.value = Event(HeroListNavigation.HideLoading)
             return
         }
-
+        minId = minId.plus(10)
+        maxId = maxId.plus(10)
         onGetAllHeroes()
     }
 
@@ -57,13 +58,16 @@ class HeroListViewModel (
                             .operate(i)
                             .doOnSubscribe { showLoading() }
                             .subscribe({ hero ->
-
-                                /*if (hero < PAGE_SIZE) {
-                                    isLastPage = true
-                                }*/
                                 heroListAux.add(hero)
-                                //hideLoading()
-                                //_events.value = Event(HeroListNavigation.ShowHeroList(heroList))
+                                if (heroListAux.size>=PAGE_SIZE){
+                                    if (heroListAux.size<= TOTAL_HERO){
+                                        hideLoading()
+                                        _events.value = Event(HeroListNavigation.ShowHeroList(heroListAux))
+                                    }else{
+                                        isLastPage = true
+                                        hideLoading()
+                                    }
+                                }
                             }, { error ->
                                 isLastPage = true
                                 hideLoading()
@@ -71,38 +75,8 @@ class HeroListViewModel (
                             })
             )
         }
-
-        hideLoading()
-        _events.value = Event(HeroListNavigation.ShowHeroList(heroListAux))
-        minId = minId.plus(10)
-        maxId = maxId.plus(10)
-
-        if (heroListAux.size < PAGE_SIZE) {
-            isLastPage = true
-        }
-        //disposable.add(
-            /*getAllHeroesUseCase
-                .operate(currentPage)
-                .doOnSubscribe { showLoading() }
-                .subscribe({ hero ->
-
-                    if (hero < PAGE_SIZE) {
-                        isLastPage = true
-                    }
-
-                    //hideLoading()
-                    //_events.value = Event(HeroListNavigation.ShowHeroList(heroList))
-                }, { error ->
-                    isLastPage = true
-                    hideLoading()
-                    _events.value = Event(HeroListNavigation.ShowHeroError(error))
-                })*/
-        //)
     }
 
-    fun onGetHero(){
-
-    }
 
 
     private fun isInFooter(
@@ -139,6 +113,7 @@ class HeroListViewModel (
     companion object {
 
         private const val PAGE_SIZE = 10
+        private const val TOTAL_HERO = 731
     }
 
 

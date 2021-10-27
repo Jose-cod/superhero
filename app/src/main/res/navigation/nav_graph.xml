@@ -17,5 +17,9 @@
         android:id="@+id/detailHeroFragment"
         android:name="com.example.superhero.ui.DetailHeroFragment"
         android:label="fragment_detail_hero"
-        tools:layout="@layout/fragment_detail_hero" />
+        tools:layout="@layout/fragment_detail_hero" >
+        <argument
+            android:name="hero"
+            app:argType="com.example.superhero.requestmanager.HeroServer" />
+    </fragment>
 </navigation>
