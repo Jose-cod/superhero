@@ -46,37 +46,45 @@ class HeroListViewModel (
             _events.value = Event(HeroListNavigation.HideLoading)
             return
         }
-        minId = minId.plus(10)
-        maxId = maxId.plus(10)
+        //minId = minId.plus(10)
+        //maxId = maxId.plus(10)
         onGetAllHeroes()
     }
 
     fun onGetAllHeroes(){
-        for (i in minId..maxId){
-            disposable.add(
-                    getAllHeroesUseCase
-                            .operate(i)
-                            .doOnSubscribe { showLoading() }
-                            .subscribe({ hero ->
-                                heroListAux.add(hero)
-                                if (heroListAux.size>=PAGE_SIZE){
-                                    if (heroListAux.size<= TOTAL_HERO){
-                                        hideLoading()
-                                        _events.value = Event(HeroListNavigation.ShowHeroList(heroListAux))
-                                    }else{
-                                        isLastPage = true
-                                        hideLoading()
-                                    }
-                                }
-                            }, { error ->
-                                isLastPage = true
-                                hideLoading()
-                                _events.value = Event(HeroListNavigation.ShowHeroError(error))
-                            })
-            )
+        if (maxId==10){
+            for (i in minId..maxId){
+                fillListHero(i)
+            }
+        }else{
+            fillListHero(maxId)
         }
     }
 
+    private fun fillListHero(id:Int){
+        disposable.add(
+                getAllHeroesUseCase
+                        .operate(id)
+                        .doOnSubscribe { showLoading() }
+                        .subscribe({ hero ->
+                            heroListAux.add(hero)
+                            if (heroListAux.size>=PAGE_SIZE){
+                                if (heroListAux.size<= TOTAL_HERO){
+                                    maxId+=1
+                                    hideLoading()
+                                    _events.value = Event(HeroListNavigation.ShowHeroList(heroListAux))
+                                }else{
+                                    isLastPage = true
+                                    hideLoading()
+                                }
+                            }
+                        }, { error ->
+                            isLastPage = true
+                            hideLoading()
+                            _events.value = Event(HeroListNavigation.ShowHeroError(error))
+                        })
+        )
+    }
 
 
     private fun isInFooter(

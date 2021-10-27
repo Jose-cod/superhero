@@ -24,12 +24,6 @@ allprojects {
 }
 
 ext{
-    //SDK & Tools
-    minSdkVersion = 21
-    targetSdkVersion = 29
-    compileSdkVersion = 29
-    versionCode = 1
-    versionName = "1.0"
 
     //Versions
     cardViewVersion = '1.0.0'
